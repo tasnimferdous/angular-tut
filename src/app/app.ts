@@ -10,6 +10,12 @@ export class App {
   protected readonly title = signal('angular-21-tut');
   count = 0;
 
+  students = [
+    { "name": "A", "mail": "a@123.com" },
+    { "name": "B", "mail": "b@123.com" },
+    { "name": "C", "mail": "c@123.com" },
+  ];
+
   onClick(event:string) {
     switch(event) {
       case "increase":
