@@ -15,4 +15,14 @@
         <br>
     }
 
+    <h1>Signal</h1>
+    <div style="text-align: center;">
+        <h2 class="count">{{signalValue()}}</h2>
+        <div>
+            <button class="btn bg-red" (click)="signalValue.set(signalValue() - 1)">Decreament</button>
+            <button class="btn bg-black" (click)="signalValue.set(0)">Reset</button>
+            <button class="btn bg-green" (click)="signalValue.set(signalValue() + 1)">Increament</button>
+        </div>
+    </div>
+
 </body>

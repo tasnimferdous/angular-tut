@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('angular-21-tut');
+
   count = 0;
 
   students = [
@@ -15,6 +15,14 @@ export class App {
     { "name": "B", "mail": "b@123.com" },
     { "name": "C", "mail": "c@123.com" },
   ];
+
+  signalValue = signal(10);
+
+  constructor() {
+    effect(() => {
+      console.log(this.signalValue());
+    });
+  }
 
   onClick(event:string) {
     switch(event) {
