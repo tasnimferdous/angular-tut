@@ -1,4 +1,4 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, computed, effect, signal, WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,12 @@ import { Component, effect, signal } from '@angular/core';
 })
 export class App {
 
-  count = 0;
-
-  students = [
-    { "name": "A", "mail": "a@123.com" },
-    { "name": "B", "mail": "b@123.com" },
-    { "name": "C", "mail": "c@123.com" },
-  ];
-
+  count: WritableSignal<number | String> = signal(1000000000);
   signalValue = signal(10);
+
+  a = signal(35);
+  b = signal(55);
+  compute = computed(() => this.a() + this.b());
 
   constructor() {
     effect(() => {
@@ -24,21 +21,16 @@ export class App {
     });
   }
 
-  onClick(event:string) {
-    switch(event) {
-      case "increase":
-        this.count++;
-        break;
-      case "decrease":
-        this.count--;
-        break;
-      default :
-        this.count = 0;
-        break;
+  setSignal() {
+    if (this.count() == 1000000000) {
+      this.count.set("Hello")
+    } else {
+      this.count.set(1000000000);
     }
   }
 
-  callAnotherFunction() {
-    console.log("2nd function");
+  computeSignal() {
+    this.a.set(100);
+    this.b.set(100);
   }
 }
