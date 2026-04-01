@@ -1,36 +1,24 @@
-import { Component, computed, effect, signal, WritableSignal } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
 
-  count: WritableSignal<number | String> = signal(1000000000);
-  signalValue = signal(10);
+  task = "";
+  taskList: { id: number, task: String }[] = [];
 
-  a = signal(35);
-  b = signal(55);
-  compute = computed(() => this.a() + this.b());
-
-  constructor() {
-    effect(() => {
-      console.log(this.signalValue());
-    });
+  updateTask() {
+    this.taskList.push({ id: this.taskList.length + 1, task: this.task });
+    this.task = "";
   }
 
-  setSignal() {
-    if (this.count() == 1000000000) {
-      this.count.set("Hello")
-    } else {
-      this.count.set(1000000000);
-    }
-  }
-
-  computeSignal() {
-    this.a.set(100);
-    this.b.set(100);
+  deleteTask(id: number) {
+    this.taskList = this.taskList.filter((item) => item.id != id);
   }
 }

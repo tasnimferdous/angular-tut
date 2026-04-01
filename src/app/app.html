@@ -1,30 +1,16 @@
 <body style="min-height: 100vh;">
-    <h1>Signal</h1>
-    <div style="text-align: center;">
-        <h2 class="count">{{signalValue()}}</h2>
-        <div>
-            <button class="btn bg-red" (click)="signalValue.set(signalValue() - 1)">Decreament</button>
-            <button class="btn bg-black" (click)="signalValue.set(0)">Reset</button>
-            <button class="btn bg-green" (click)="signalValue.set(signalValue() + 1)">Increament</button>
-        </div>
-    </div>
+    <h1>To-Do List</h1>
+    <input [(ngModel)]="task" type="text" placeholder="Enter task">
 
-<hr>
+    <button (click) = "updateTask()">Add Task</button>
 
-    <div style="text-align: center;">
-        <h2>{{count()}}</h2>
-        <div>
-            <button class="btn bg-red" (click)="setSignal()">Update</button>
-        </div>
-    </div>
 
-<hr>
-
-    <div style="text-align: center;">
-        <h2>{{compute()}}</h2>
-        <div>
-            <button class="btn bg-red" (click)="computeSignal()">Update</button>
-        </div>
-    </div>
+    @for(task of taskList; track task.id){
+        <ul class="task-list">
+            <li>{{task.id}}</li>
+            <li>{{task.task}}</li>
+            <li><button (click)="deleteTask(task.id)">Delete</button></li>
+        </ul>
+    }
 
 </body>
