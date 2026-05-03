@@ -15,8 +15,7 @@ export class User {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      console.log(params);
-      this.userName = "a";
+      this.userName = params['name'];
     });
   }
 }

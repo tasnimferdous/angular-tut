@@ -1,11 +1,3 @@
 <app-header></app-header>
-<h1>User List</h1>
 
-<ul>
-  @for (user of users; track user.id) {
-    <li>
-      <a routerLink="/user/{{ user.id }}/{{ user.name }}">{{ user.name }}</a>
-    </li>
-  }
-</ul>
 <router-outlet />
