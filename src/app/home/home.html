@@ -1,9 +1,9 @@
-<h1>User List</h1>
+<h1>Reactive Form</h1>
 
-<ul>
-  @for (user of users; track user.id) {
-    <li>
-      <a routerLink="/user/{{ user.id }}/{{ user.name }}">{{ user.name }}</a>
-    </li>
-  }
-</ul>
+<form action="" method="post">
+  <input type="text" name="name" placeholder="Name" [formControl]="name"/>
+<br><br>
+  <input type="password" name="password" placeholder="Password" [formControl]="password"/>
+<br><br>
+  <button type="button" (click)="onSubmit()">Submit</button>
+</form>
