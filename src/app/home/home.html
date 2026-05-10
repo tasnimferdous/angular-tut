@@ -1,9 +1,11 @@
 <h1>Reactive Form</h1>
 
-<form action="" method="post">
-  <input type="text" name="name" placeholder="Name" [formControl]="name"/>
+<form [formGroup] = "formProperties" (ngSubmit) = "onSubmit()">
+  <input type="text" name="name" placeholder="Name" formControlName="name"/>
 <br><br>
-  <input type="password" name="password" placeholder="Password" [formControl]="password"/>
+  <input type="text" name="email" placeholder="Email" formControlName="email"/>
 <br><br>
-  <button type="button" (click)="onSubmit()">Submit</button>
+  <input type="password" name="password" placeholder="Password" formControlName="password"/>
+<br><br>
+  <button>Submit</button>
 </form>
