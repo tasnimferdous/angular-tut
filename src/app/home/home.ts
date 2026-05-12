@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -9,20 +9,22 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class Home {
   formProperties = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
+    name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
   onSubmit() {
     console.log(this.formProperties.value);
-    console.log("Changing value");
-    this.formProperties.setValue({
-      name: "John Doe",
-      email: "john.doe@example.com",
-      password: "kjhgdfgdfgdfg",
-    })
-    console.log("After changing value");
-    console.log(this.formProperties.value);
+  }
+
+  get name() {
+    return this.formProperties.get('name');
+  }
+  get email() {
+    return this.formProperties.get('email');
+  }
+  get password() {
+    return this.formProperties.get('password');
   }
 }

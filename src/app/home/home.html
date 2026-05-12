@@ -2,10 +2,28 @@
 
 <form [formGroup] = "formProperties" (ngSubmit) = "onSubmit()">
   <input type="text" name="name" placeholder="Name" formControlName="name"/>
+  @if(name?.hasError('required')) {
+    <span>Name is required.</span>
+  }
+  @else if(name?.invalid && (name?.touched || name?.dirty)) {
+    <span>Provide a valid name.</span>
+  }
 <br><br>
   <input type="text" name="email" placeholder="Email" formControlName="email"/>
+  @if(email?.hasError('required')) {
+    <span>Email is required.</span>
+  }
+  @else if(email?.invalid && (email?.touched || email?.dirty)) {
+    <span>Provide a valid email address.</span>
+  }
 <br><br>
   <input type="password" name="password" placeholder="Password" formControlName="password"/>
+  @if(password?.hasError('required')) {
+    <span>Password is required.</span>
+  }
+  @else if(password?.invalid && (password?.touched || password?.dirty)) {
+    <span>Password must be at least 6 characters long.</span>
+  }
 <br><br>
   <button>Submit</button>
 </form>
